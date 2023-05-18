@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awsome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+
+    <div class="wrapper">
+        <h1>Login</h1> 
+
+        <?php
+        // Handle the login form submission
+        session_start();
+
+        if(isset($_POST['login'])) {
+            // Check the user's credentials and log them in
+            // ...
+            // Set the session variable
+            $_SESSION['username'] = $username;
+            // Redirect to the homepage
+            header("Location: homepage.php");
+            exit();
+        }
+
+        // Check if the user is already logged in
+        if(isset($_SESSION['username'])) {
+            // Display content for logged-in users
+            // ...
+        } else {
+            // Display the login form
+            ?>
+            <?php
+        }
+        ?>
+
+
+            <form id="login-form" action="#" method="post">
+                <input type="text" name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+                <button type="submit" name="login">Login</button>
+            </form>
+
+            <div class="forgot-password">
+                <a href="forgot-password.php">Forgot your password?</a>
+            </div>
+
+            <div class="member">
+                Not a member? <a href="./signup.html">
+                    Register Now
+                </a>
+            </div>
+            <a href="home.html">home</a>
+            <script>
+                document.getElementById("login-form").addEventListener("submit", function(event) {
+                    var username = document.getElementsByName("username")[0].value;
+                    var password = document.getElementsByName("password")[0].value;
+
+                    if(username.trim() === "" || password.trim() === "") {
+                        alert("Please enter your username and password");
+                        event.preventDefault();
+                    }
+                });
+            </script>
+    </div>
+
+</body>
+</html>
